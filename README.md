@@ -1,56 +1,16 @@
-# qassemfolio
+# QassemFolio
 
-Generate a clean developer portfolio from a GitHub username in one command.
-
-```bash
-npx qassemfolio qassemadra
-```
+Generate stunning developer portfolios directly from GitHub in seconds.
 
 ## Features
 
-- Fetches GitHub profile data
-- Shows top public repositories
-- Generates a responsive static portfolio
-- Includes default and terminal themes
-- Works with GitHub Pages, Netlify, Vercel, or any static host
+- ⚡ One-command portfolio generation
+- 🎨 Beautiful modern templates
+- 📊 GitHub stats integration
+- 🚀 Easy deployment
+- 🤖 AI-ready structure
 
-## Usage
-
-```bash
-npx qassemfolio <github-username>
-```
-
-Examples:
+## Quick Start
 
 ```bash
 npx qassemfolio qassemadra
-npx qassemfolio qassemadra --out ./site
-npx qassemfolio qassemadra --theme terminal
-npx qassemfolio roast qassemadra
-```
-
-## Local development
-
-```bash
-git clone https://github.com/qassemadra/qassemfolio.git
-cd qassemfolio
-npm install
-npm start -- qassemadra
-```
-
-## Publish to npm
-
-```bash
-npm login
-npm publish --access public
-```
-
-Then anyone can run:
-
-```bash
-npx qassemfolio qassemadra
-```
-
-## License
-
-MIT
