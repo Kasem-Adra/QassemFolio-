@@ -13,12 +13,14 @@ export function renderPortfolio({ user, repos }) {
 
   const repoCards = repos.map(repo => `
     <div class="card">
-      <div class="card-header">
+      <div class="card-top">
         <h3>${escapeHtml(repo.name)}</h3>
         <span>${escapeHtml(repo.language || 'Code')}</span>
       </div>
 
-      <p>${escapeHtml(repo.description || 'No description available.')}</p>
+      <p>
+        ${escapeHtml(repo.description || 'No description available yet.')}
+      </p>
 
       <div class="meta">
         <span>⭐ ${repo.stars}</span>
@@ -35,12 +37,17 @@ export function renderPortfolio({ user, repos }) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>${escapeHtml(title)}</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -48,13 +55,15 @@ export function renderPortfolio({ user, repos }) {
 }
 
 body{
-  background:#050816;
+  font-family:'Inter',sans-serif;
+  background:
+    radial-gradient(circle at top left,#7c3aed55,transparent 25%),
+    radial-gradient(circle at bottom right,#06b6d455,transparent 25%),
+    #050816;
+
   color:white;
-  font-family:Inter,sans-serif;
+  min-height:100vh;
   padding:60px 20px;
-  background-image:
-    radial-gradient(circle at top left,#7c3aed33,transparent 25%),
-    radial-gradient(circle at bottom right,#06b6d433,transparent 25%);
 }
 
 .container{
@@ -63,130 +72,329 @@ body{
 }
 
 .hero{
-  text-align:center;
-  margin-bottom:70px;
+  background:linear-gradient(
+    135deg,
+    rgba(15,23,42,.95),
+    rgba(2,6,23,.95)
+  );
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:36px;
+
+  padding:60px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.5),
+    0 0 80px rgba(124,58,237,.15);
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(circle at top right,#7c3aed22,transparent 30%),
+    radial-gradient(circle at bottom left,#06b6d422,transparent 30%);
+
+  pointer-events:none;
 }
 
 .avatar{
-  width:140px;
-  height:140px;
+  width:120px;
+  height:120px;
+
   border-radius:50%;
+
   border:4px solid #7c3aed;
-  margin-bottom:20px;
-  box-shadow:0 0 30px #7c3aed88;
+
+  object-fit:cover;
+
+  margin-bottom:25px;
+
+  box-shadow:
+    0 0 30px rgba(124,58,237,.7);
 }
 
-h1{
-  font-size:56px;
-  margin-bottom:10px;
+.label{
+  color:#60a5fa;
+  font-size:14px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:15px;
+  font-weight:700;
+}
+
+.hero h1{
+  font-size:78px;
+  line-height:1;
+  margin-bottom:25px;
+
+  font-weight:800;
 }
 
 .bio{
-  color:#94a3b8;
-  font-size:18px;
+  font-size:24px;
+  color:#cbd5e1;
   max-width:700px;
-  margin:auto;
   line-height:1.7;
+  margin-bottom:35px;
 }
 
 .stats{
-  margin-top:30px;
   display:flex;
-  justify-content:center;
-  gap:20px;
+  gap:15px;
   flex-wrap:wrap;
+  margin-bottom:35px;
 }
 
 .stats div{
-  background:#0f172a;
-  padding:14px 24px;
-  border-radius:16px;
-  border:1px solid #1e293b;
+  padding:14px 22px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:rgba(255,255,255,.03);
+
+  color:#e2e8f0;
+
+  font-weight:600;
 }
 
-.projects-title{
-  margin-bottom:30px;
-  font-size:34px;
+.github-btn{
+  display:inline-block;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+  );
+
+  color:white;
+
+  text-decoration:none;
+
+  padding:16px 28px;
+
+  border-radius:18px;
+
+  font-weight:700;
+
+  transition:.3s;
+}
+
+.github-btn:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 10px 25px rgba(59,130,246,.4);
+}
+
+.section{
+  margin-top:70px;
+}
+
+.section-label{
+  color:#60a5fa;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.section h2{
+  font-size:54px;
+  margin-bottom:35px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:25px;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+  gap:28px;
 }
 
 .card{
-  background:#0f172a;
-  border:1px solid #1e293b;
-  border-radius:24px;
-  padding:25px;
-  transition:.3s;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15,23,42,.95),
+      rgba(2,6,23,.95)
+    );
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:28px;
+
+  padding:28px;
+
+  transition:.35s;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+
+  position:absolute;
+  top:-100px;
+  right:-100px;
+
+  width:220px;
+  height:220px;
+
+  background:radial-gradient(
+    circle,
+    rgba(124,58,237,.18),
+    transparent 70%
+  );
 }
 
 .card:hover{
-  transform:translateY(-8px);
+  transform:translateY(-10px);
+
   border-color:#7c3aed;
-  box-shadow:0 10px 30px #7c3aed22;
+
+  box-shadow:
+    0 10px 35px rgba(124,58,237,.18);
 }
 
-.card-header{
+.card-top{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
+  align-items:flex-start;
+  gap:15px;
+  margin-bottom:20px;
 }
 
-.card-header h3{
-  font-size:22px;
+.card-top h3{
+  font-size:30px;
+  line-height:1.2;
 }
 
-.card-header span{
-  background:#7c3aed22;
-  color:#c4b5fd;
-  padding:6px 12px;
-  border-radius:999px;
+.card-top span{
+  background:#facc15;
+
+  color:#111827;
+
   font-size:13px;
+
+  padding:8px 12px;
+
+  border-radius:999px;
+
+  font-weight:700;
+
+  white-space:nowrap;
 }
 
 .card p{
-  color:#94a3b8;
-  line-height:1.7;
-  margin-bottom:20px;
+  color:#cbd5e1;
+  line-height:1.8;
+  font-size:18px;
+  margin-bottom:25px;
 }
 
 .meta{
   display:flex;
-  gap:15px;
-  margin-bottom:20px;
-  color:#cbd5e1;
+  gap:18px;
+  color:#fcd34d;
+  margin-bottom:25px;
+  font-size:18px;
 }
 
 .card a{
-  color:#22d3ee;
+  display:inline-block;
+
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+  );
+
+  color:white;
+
   text-decoration:none;
-  font-weight:bold;
+
+  padding:14px 22px;
+
+  border-radius:16px;
+
+  font-weight:700;
+
+  transition:.3s;
 }
 
 .card a:hover{
-  color:#67e8f9;
+  transform:translateY(-3px);
 }
 
 .footer{
   text-align:center;
-  margin-top:80px;
+  margin-top:90px;
   color:#64748b;
+  font-size:15px;
 }
 
-@media(max-width:768px){
-  h1{
-    font-size:38px;
+@media(max-width:900px){
+
+  .hero{
+    padding:40px 30px;
+  }
+
+  .hero h1{
+    font-size:56px;
   }
 
   .bio{
-    font-size:16px;
+    font-size:20px;
+  }
+
+  .section h2{
+    font-size:42px;
   }
 }
+
+@media(max-width:640px){
+
+  body{
+    padding:30px 15px;
+  }
+
+  .hero{
+    padding:30px 22px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .bio{
+    font-size:17px;
+  }
+
+  .section h2{
+    font-size:34px;
+  }
+
+  .card-top h3{
+    font-size:24px;
+  }
+}
+
 </style>
+
 </head>
 
 <body>
@@ -194,27 +402,53 @@ h1{
 <div class="container">
 
   <section class="hero">
-    <img class="avatar" src="${user.avatar_url}" />
 
-    <h1>${escapeHtml(user.name || user.login)}</h1>
+    <img
+      class="avatar"
+      src="${user.avatar_url}"
+      alt="${escapeHtml(user.login)}"
+    />
+
+    <div class="label">
+      Generated by QassemFolio
+    </div>
+
+    <h1>
+      ${escapeHtml(user.name || user.login)}
+    </h1>
 
     <p class="bio">
       ${escapeHtml(bio)}
     </p>
 
     <div class="stats">
-      <div>📦 ${user.public_repos} Repositories</div>
-      <div>👥 ${user.followers} Followers</div>
-      <div>⭐ Open Source</div>
+      <div>📦 ${user.public_repos} repos</div>
+      <div>👥 ${user.followers} followers</div>
+      <div>⭐ ${user.following} following</div>
     </div>
+
+    <a
+      class="github-btn"
+      href="${user.html_url}"
+      target="_blank"
+    >
+      GitHub Profile
+    </a>
+
   </section>
 
-  <section>
-    <h2 class="projects-title">Featured Projects</h2>
+  <section class="section">
+
+    <div class="section-label">
+      Selected work
+    </div>
+
+    <h2>Projects</h2>
 
     <div class="grid">
       ${repoCards}
     </div>
+
   </section>
 
   <div class="footer">
