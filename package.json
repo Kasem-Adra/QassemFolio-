@@ -1,0 +1,25 @@
+{
+  "name": "qassemfolio",
+  "version": "1.0.0",
+  "description": "Generate a clean developer portfolio from a GitHub username in one command.",
+  "type": "module",
+  "bin": {
+    "qassemfolio": "./bin/qassemfolio.js"
+  },
+  "scripts": {
+    "start": "node ./bin/qassemfolio.js",
+    "demo": "node ./bin/qassemfolio.js qassemadra --out ./dist"
+  },
+  "keywords": ["portfolio", "github", "cli", "developer", "generator"],
+  "author": "Qassem Adra",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.0.1",
+    "chalk": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
