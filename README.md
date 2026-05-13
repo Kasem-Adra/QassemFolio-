@@ -11,6 +11,19 @@ Generate stunning developer portfolios directly from GitHub in seconds.
 - 🤖 AI-ready structure
 
 ## Quick Start
+```bash
+npx qassemfolio qassemadra
+```
+
+## Preview
+
+![QassemFolio Preview](preview.png)
+
+Coming soon...
+
+## License
+
+MIT
 
 ```bash
 npx qassemfolio qassemadra
